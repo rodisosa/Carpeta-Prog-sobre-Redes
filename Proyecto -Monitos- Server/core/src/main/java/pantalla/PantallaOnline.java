@@ -81,6 +81,9 @@ public class PantallaOnline implements Screen{
 				tiempo = 0;
 				tem--;
 				crearFruta();
+				hs.enviarMensajeATodos("Tiempo-" + tem);
+				hs.enviarMensajeCliente2("Actualizar-Mono2-" + mono2.getPosX() + "-" + mono2.camIzq + "-" + mono2.camDer);
+				hs.enviarMensajeCliente1("Actualizar-Mono1-" + mono1.getPosX() + "-" + mono1.camIzq + "-" + mono1.camDer);
 			}
 			
 			Render.begin();
@@ -93,7 +96,9 @@ public class PantallaOnline implements Screen{
 			
 			Render.end();
 			
-			hs.enviarMensajeATodos("Actualizar-Mono-" + mono1.getPosX() + "-" + mono2.getPosX());
+			//hs.enviarMensajeATodos("Actualizar-Mono-" + mono1.getPosX() + "-" + mono2.getPosX());
+			hs.enviarMensajeCliente1("Actualizar-Mono2-" + mono2.getPosX() + "-" + mono2.camIzq + "-" + mono2.camDer);
+			hs.enviarMensajeCliente2("Actualizar-Mono1-" + mono1.getPosX() + "-" + mono1.camIzq + "-" + mono1.camDer);
 		}
 	}
 	
@@ -115,32 +120,31 @@ public class PantallaOnline implements Screen{
 			
 			//hs.enviarMensajeATodos("Actualizar-Fruta-" + i + "-" + fruta.getPosY());
 			
-			
-			
-			
 			if(fruta.getPosY() < -(fruta.getAlto())) {
 				arrayFrutas.removeIndex(i);
 			} else if(mono1.colision.overlaps(fruta.colision)) {
 				if (fruta.nroF == 0) mono1.puntos += 25;
 				else if (fruta.nroF == 1) mono1.puntos += 50;
 				else mono1.puntos += 100;
+				hs.enviarMensajeATodos("Borrar-Fruta-" + i);
 				arrayFrutas.removeIndex(i);
 			} else if(mono2.colision.overlaps(fruta.colision)) {
 				if (fruta.nroF == 0) mono2.puntos += 25;
 				else if (fruta.nroF == 1) mono2.puntos += 50;
 				else mono2.puntos += 100;
+				hs.enviarMensajeATodos("Borrar-Fruta-" + i);
 				arrayFrutas.removeIndex(i);
-			}
+			} 
 		}
 		
 		for(Fruta fruta : arrayFrutas) {
 			fruta.dibujar();
+			//hs.enviarMensajeATodos("CrearFruta-" + fruta.nroF + "-" + fruta.getPosX() + "-" + fruta.getPosY());
 		}
 	}
 	
 	@SuppressWarnings("static-access")
 	public void update() {
-		
 		if(izq1) {
 			mono1.setPosX(mono1.getPosX()-mono1.getVelocidad());
 			mono1.camIzq = true;
@@ -164,7 +168,6 @@ public class PantallaOnline implements Screen{
 			mono2.camDer= true;
 			mono2.camIzq = false;
 		} else mono2.camDer = false;
-		
 		
 		
 		temporizador.setTexto(Integer.toString(tem));
@@ -216,7 +219,7 @@ public class PantallaOnline implements Screen{
 		puntos1.setPosicion(10, (Config.ALTO - puntos1.getAlto()) - 10);
 		
 		puntos2 = new Texto(Recursos.FUENTE_MENU, 45, Color.WHITE, true);
-		puntos2.setTexto(Integer.toString(mono1.puntos));
+		puntos2.setTexto(Integer.toString(mono2.puntos));
 		puntos2.setPosicion( (Config.ANCHO - puntos2.getAncho()) - 10 , (Config.ALTO - puntos2.getAlto()) - 10);
 	}
 	

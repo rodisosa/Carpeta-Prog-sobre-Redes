@@ -88,6 +88,24 @@ public class HiloServidor extends Thread{
 		
 	}
 	
+	public void enviarMensajeCliente1(String msg) {
+		for (int i = 0; i < clientes.length; i++) {
+			if(i==0) {
+				enviarMensaje(msg, clientes[0].getIp(), clientes[0].getPuerto());
+			}
+		}
+	}
+	
+	public void enviarMensajeCliente2(String msg) {
+		for (int i = 0; i < clientes.length; i++) {
+			if(i==1) {
+				enviarMensaje(msg, clientes[1].getIp(), clientes[1].getPuerto());
+			}
+			
+		}
+	}
+	
+	
 	
 	public void procesarMensaje(DatagramPacket dp) {
 		String msg = new String(dp.getData()).trim();

@@ -69,11 +69,7 @@ public class HiloCliente extends Thread{
 			if(msg.equals("OK")) {
 				ipServer = dp.getAddress();
 				Config.conectado = true;
-			} /*else if (msg.equals("Empezar")) {
-				enviarMensaje("OK");
-				Config.online = true;
-				System.out.println("Llegó el mensaje empezar");
-			}*/
+			}
 			
 			if (mensajeParametrizado[0].equals("Empezar")) {
 				enviarMensaje("OK");
@@ -84,13 +80,27 @@ public class HiloCliente extends Thread{
 				else app.jugador=false;
 			}
 			
+			if (mensajeParametrizado[0].equals("Tiempo")) {
+				app.tem--;
+			}
+			
 		} else {
+			
 			if(mensajeParametrizado[0].equals("Actualizar")) {
-				if (mensajeParametrizado[1].equals("Mono")) {
+				if (mensajeParametrizado[1].equals("Mono1")) {
 					float posX1 = Float.parseFloat(mensajeParametrizado[2]);
-					float posX2 = Float.parseFloat(mensajeParametrizado[3]);
+					if(mensajeParametrizado[3].equals("false")) app.mono1.camIzq=false;
+					else if(mensajeParametrizado[3].equals("true")) app.mono1.camIzq=true;
+					if(mensajeParametrizado[4].equals("false")) app.mono1.camDer=false;
+					else if(mensajeParametrizado[4].equals("true")) app.mono1.camDer=true;
 					app.mono1.setPosX(posX1);
-					app.mono2.setPosX(posX2);
+				} else if(mensajeParametrizado[1].equals("Mono2")) {
+					float posX1 = Float.parseFloat(mensajeParametrizado[2]);
+					if(mensajeParametrizado[3].equals("false")) app.mono2.camIzq=false;
+					else if(mensajeParametrizado[3].equals("true")) app.mono2.camIzq=true;
+					if(mensajeParametrizado[4].equals("false")) app.mono2.camDer=false;
+					else if(mensajeParametrizado[4].equals("true")) app.mono2.camDer=true;
+					app.mono2.setPosX(posX1);
 				}
 			}
 			
@@ -100,6 +110,18 @@ public class HiloCliente extends Thread{
 				
 				//app.fruta = new Fruta(nroF);
 				app.crearFruta(nroF, posX);
+				
+			}
+			
+			if (mensajeParametrizado[0].equals("Borrar")) {
+				if(mensajeParametrizado[1].equals("Fruta")) {
+					int posI = Integer.parseInt(mensajeParametrizado[2]);
+					for(int i = app.arrayFrutas.size - 1; i >= 0; i--) {
+						if(i == posI) {
+							app.arrayFrutas.removeIndex(i);
+						}
+					}
+				}
 			}
 			
 		}
