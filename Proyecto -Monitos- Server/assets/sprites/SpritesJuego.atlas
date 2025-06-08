@@ -1,0 +1,181 @@
+
+SpritesJuego.png
+size: 542, 540
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+MonoGrisCamDer1
+  rotate: false
+  xy: 2, 84
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisCamDer2
+  rotate: false
+  xy: 362, 84
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisCamDer3
+  rotate: false
+  xy: 272, 312
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisCamDer4
+  rotate: false
+  xy: 2, 198
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisCamDer5
+  rotate: false
+  xy: 452, 426
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisCamIzq1
+  rotate: false
+  xy: 2, 426
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisCamIzq2
+  rotate: false
+  xy: 362, 426
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisCamIzq3
+  rotate: false
+  xy: 92, 312
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisCamIzq4
+  rotate: false
+  xy: 272, 84
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisCamIzq5
+  rotate: false
+  xy: 182, 312
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisEst
+  rotate: false
+  xy: 92, 84
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCamDer1
+  rotate: false
+  xy: 182, 426
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCamDer2
+  rotate: false
+  xy: 362, 198
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCamDer3
+  rotate: false
+  xy: 272, 426
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCamDer4
+  rotate: false
+  xy: 2, 312
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCamDer5
+  rotate: false
+  xy: 182, 84
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCamIzq1
+  rotate: false
+  xy: 452, 312
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCamIzq2
+  rotate: false
+  xy: 182, 198
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCamIzq3
+  rotate: false
+  xy: 92, 426
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCamIzq4
+  rotate: false
+  xy: 272, 198
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCamIzq5
+  rotate: false
+  xy: 92, 198
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronEst
+  rotate: false
+  xy: 362, 312
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+banana
+  rotate: false
+  xy: 452, 260
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+manzana
+  rotate: false
+  xy: 54, 32
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+pera
+  rotate: false
+  xy: 2, 32
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
