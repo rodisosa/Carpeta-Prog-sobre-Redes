@@ -81,7 +81,9 @@ public class HiloCliente extends Thread{
 			}
 			
 			if (mensajeParametrizado[0].equals("Tiempo")) {
-				app.tem--;
+				int tiempo = Integer.parseInt(mensajeParametrizado[1]);
+				System.out.println(tiempo);
+				app.tem = tiempo;
 			}
 			
 		} else {
@@ -101,14 +103,18 @@ public class HiloCliente extends Thread{
 					if(mensajeParametrizado[4].equals("false")) app.mono2.camDer=false;
 					else if(mensajeParametrizado[4].equals("true")) app.mono2.camDer=true;
 					app.mono2.setPosX(posX1);
+				} else if (mensajeParametrizado[1].equals("Puntos1")) {
+					int puntos1 = Integer.parseInt(mensajeParametrizado[2]);
+					app.mono1.puntos=puntos1;
+				} else if (mensajeParametrizado[1].equals("Puntos2")) {
+					int puntos2 = Integer.parseInt(mensajeParametrizado[2]);
+					app.mono2.puntos=puntos2;
 				}
 			}
 			
 			if (mensajeParametrizado[0].equals("CrearFruta")) {
 				int nroF = Integer.parseInt(mensajeParametrizado[1]);
 				float posX = Float.parseFloat(mensajeParametrizado[2]);
-				
-				//app.fruta = new Fruta(nroF);
 				app.crearFruta(nroF, posX);
 				
 			}

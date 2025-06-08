@@ -139,6 +139,10 @@ public class PantallaCargaOnline implements Screen{
 	}
 	
 	public void update() {
+		
+		temporizador.setTexto(Integer.toString(tem));
+		temporizador.setPosicion(((Config.ANCHO / 2) - (temporizador.getAncho() / 2)), Config.ALTO);
+		
 		if(jugador) {
 			if(entradas.isIzq()) {
 				if(aux1==false) {

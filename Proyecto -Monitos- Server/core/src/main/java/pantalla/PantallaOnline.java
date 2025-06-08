@@ -126,12 +126,14 @@ public class PantallaOnline implements Screen{
 				if (fruta.nroF == 0) mono1.puntos += 25;
 				else if (fruta.nroF == 1) mono1.puntos += 50;
 				else mono1.puntos += 100;
+				hs.enviarMensajeATodos("Actualizar-Puntos1-" + mono1.puntos);
 				hs.enviarMensajeATodos("Borrar-Fruta-" + i);
 				arrayFrutas.removeIndex(i);
 			} else if(mono2.colision.overlaps(fruta.colision)) {
 				if (fruta.nroF == 0) mono2.puntos += 25;
 				else if (fruta.nroF == 1) mono2.puntos += 50;
 				else mono2.puntos += 100;
+				hs.enviarMensajeATodos("Actualizar-Puntos2-" + mono2.puntos);
 				hs.enviarMensajeATodos("Borrar-Fruta-" + i);
 				arrayFrutas.removeIndex(i);
 			} 
