@@ -6,7 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import pantalla.PantallaLocal;
 import pantalla.PantallaLocalFinal;
 import pantalla.PantallaMenu;
-import pantalla.PantallaCargaOnline;
+import pantalla.PantallaOnline;
 
 public class Teclado implements InputProcessor{
 
@@ -29,7 +29,7 @@ protected boolean inputflag=true;
 PantallaMenu app;
 PantallaLocal app1;
 PantallaLocalFinal app2;
-PantallaCargaOnline app3;
+PantallaOnline app3;
 
 public Teclado (PantallaMenu app) {
 this.app = app;
@@ -43,7 +43,7 @@ public Teclado (PantallaLocalFinal app) {
 this.app2 = app;
 }
 
-public Teclado (PantallaCargaOnline app) {
+public Teclado (PantallaOnline app) {
 this.app3 = app;
 }
 

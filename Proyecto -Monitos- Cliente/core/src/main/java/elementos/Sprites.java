@@ -50,6 +50,10 @@ public class Sprites {
 		manzana = atlas.createSprite("manzana");
 		pera = atlas.createSprite("pera");
 		banana = atlas.createSprite("banana");
+		
+		banana.setSize(Banana.getAncho(), Banana.getAlto());
+		pera.setSize(Pera.getAncho(), Pera.getAlto());
+		manzana.setSize(Manzana.getAncho(), Manzana.getAlto());
 	}
 
 	public void dispose() {

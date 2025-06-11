@@ -6,8 +6,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
+
+import elementos.Banana;
 import elementos.Fruta;
+import elementos.Manzana;
 import elementos.Mono;
+import elementos.Pera;
 import elementos.Sprites;
 import utiles.Recursos;
 import utiles.Render;
@@ -33,8 +37,6 @@ public class PantallaLocal implements Screen{
 	public static Array<Fruta> arrayFrutas;
 	private Fruta fruta;
 	
-	//boolean ganador = false;
-	
 	@Override
 	public void show() {
 		entradas.startInput();
@@ -52,8 +54,6 @@ public class PantallaLocal implements Screen{
 		tiempo1 += delta;
 		mono1.setTiempo(tiempo1);
 		mono2.setTiempo(tiempo1);
-		
-		
 		Render.LimpPant();
 		update();
 		
@@ -81,7 +81,16 @@ public class PantallaLocal implements Screen{
 		Render.end();
 		
 	}
-
+	
+	public void crearFruta() {
+		int random = MathUtils.random(1, 10);
+		if(random > 9) fruta = new Banana(Banana.getNroB(), MathUtils.random(0, Config.ANCHO - Banana.getAncho()),Banana.getVelocidadCaida(),0,0);
+		else if (random <= 9 && random > 5) fruta = new Pera(Pera.getNroP(), MathUtils.random(0, Config.ANCHO - Pera.getAncho()),Pera.getVelocidadCaida(),0,0);
+		else fruta = new Manzana(Manzana.getNroM(), MathUtils.random(0, Config.ANCHO - Manzana.getAncho()),Manzana.getVelocidadCaida(),0,0);
+		arrayFrutas.add(fruta);
+		fruta.colision = new Rectangle();
+	}
+	
 	public void dibujarTexto() {
 		jugador1.dibujar();
 		jugador2.dibujar();
@@ -89,36 +98,42 @@ public class PantallaLocal implements Screen{
 		puntos1.dibujar();
 		puntos2.dibujar();
 	}
-
+	
 	@SuppressWarnings("static-access")
 	private void dibujarFrutas() {
 		
 		for(int i = arrayFrutas.size - 1; i >= 0; i--) {
-			fruta = arrayFrutas.get(i);
-			fruta.setPosY(fruta.getPosY() - Fruta.getVelocidadCaida());
-			fruta.colision.set(fruta.getPosX(), fruta.getPosY(), fruta.getAncho(), fruta.getAlto());
-			
+			fruta = arrayFrutas.get(i);		
+			fruta.setPosY(fruta.getPosY() - fruta.Velocidad());
+			if(fruta.getNroF() == Manzana.getNroM()) {
+				fruta.colision.set(fruta.getPosX(), fruta.getPosY(), Manzana.getAncho(), Manzana.getAlto());
+			} else if (fruta.getNroF() == Pera.getNroP()) {
+				fruta.colision.set(fruta.getPosX(), fruta.getPosY(), Pera.getAncho(), Pera.getAlto());
+			} else if (fruta.getNroF() == Banana.getNroB()) {
+				fruta.colision.set(fruta.getPosX(), fruta.getPosY(), Banana.getAncho(), Banana.getAlto());
+			}
+				
 			if(fruta.getPosY() < -(fruta.getAlto())) {
 				arrayFrutas.removeIndex(i);
 			} else if(mono1.colision.overlaps(fruta.colision)) {
-				if (fruta.nroF == 0) mono1.puntos += 25;
-				else if (fruta.nroF == 1) mono1.puntos += 50;
-				else mono1.puntos += 100;
+				if (fruta.getNroF() == Manzana.getNroM()) mono1.puntos += Manzana.getPuntos();
+				else if (fruta.getNroF() == Pera.getNroP()) mono1.puntos += Pera.getPuntos();
+				else mono1.puntos += Banana.getPuntos();
 				arrayFrutas.removeIndex(i);
 			} else if(mono2.colision.overlaps(fruta.colision)) {
-				if (fruta.nroF == 0) mono2.puntos += 25;
-				else if (fruta.nroF == 1) mono2.puntos += 50;
-				else mono2.puntos += 100;
+				if (fruta.getNroF()== Manzana.getNroM()) mono2.puntos += Manzana.getPuntos();
+				else if (fruta.getNroF() == Pera.getNroP()) mono2.puntos += Pera.getPuntos();
+				else mono2.puntos += Banana.getPuntos();
 				arrayFrutas.removeIndex(i);
 			}
 			
 		}
 		
 		for(Fruta fruta : arrayFrutas) {
-			fruta.dibujar();
+				fruta.dibujar(fruta.getNroF());
 		}
 	}
-
+	
 	public void crearTexto() {
 		jugador1 = new Texto(Recursos.FUENTE_MENU, 45, Color.GOLD, true);
 		jugador1.setTexto(texto1);
@@ -141,10 +156,7 @@ public class PantallaLocal implements Screen{
 		puntos2.setPosicion( (Config.ANCHO - puntos2.getAncho()) - 10 , (Config.ALTO - puntos2.getAlto()) - 10);
 	}
 	
-	@SuppressWarnings("static-access")
 	public void update() {
-		
-		
 		
 		temporizador.setTexto(Integer.toString(tem));
 		
@@ -171,29 +183,13 @@ public class PantallaLocal implements Screen{
 			mono2.camDer= true;
 			mono2.camIzq = false;
 		} else mono2.camDer = false;
-		
-		//if(entradas.isA()) mono1.setPosX(mono1.getPosX()-mono1.getVelocidad());
-		
-		//if(entradas.isD()) mono1.setPosX(mono1.getPosX()+mono1.getVelocidad());
-		
-		//if(entradas.isIzq()) mono2.setPosX(mono2.getPosX()-mono2.getVelocidad());
-		
-		//if(entradas.isDer()) mono2.setPosX(mono2.getPosX()+mono2.getVelocidad());
 			
-		mono1.colision.set(mono1.getPosX(), 0, mono1.getAncho(), mono1.getAlto());
-		mono2.colision.set(mono2.getPosX(), 0, mono2.getAncho(), mono2.getAlto());
+		mono1.colision.set(mono1.getPosX(), 0, Mono.getAncho(),	Mono.getAlto());
+		mono2.colision.set(mono2.getPosX(), 0, Mono.getAncho(), Mono.getAlto());
 		
 		puntos1.setTexto(Integer.toString(mono1.puntos));
 		puntos2.setTexto(Integer.toString(mono2.puntos));
-		puntos2.setPosicion( (Config.ANCHO - puntos2.getAncho()) - 10 , (Config.ALTO - puntos2.getAlto()) - 10);
-		
-	}
-	
-	@SuppressWarnings("static-access")
-	public void crearFruta() {
-		fruta = new Fruta(MathUtils.random(0, 2), MathUtils.random(0, Config.ANCHO - fruta.getAncho()));
-		arrayFrutas.add(fruta);
-		fruta.colision = new Rectangle();
+		puntos2.setPosicion( (Config.ANCHO - puntos2.getAncho()) - 10 , (Config.ALTO - puntos2.getAlto()) - 10);	
 	}
 	
 	public void crearMono() {
@@ -205,7 +201,7 @@ public class PantallaLocal implements Screen{
 		mono1.colision = new Rectangle();
 		mono2.colision = new Rectangle();
 	}
-	
+
 	@Override
 	public void resize(int width, int height) {
 	}

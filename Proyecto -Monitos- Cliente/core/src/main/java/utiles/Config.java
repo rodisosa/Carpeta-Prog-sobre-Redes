@@ -12,8 +12,8 @@ public class Config {
 	public static final int ALTO = 500;		// Alto de la pantalla
 
 
-	public static boolean online=true;
-	public static boolean conectado=true;
+	public static boolean online = false;
+	public static boolean conectado = false;
 	
 	public static Camera camara;
 	public static SpriteBatch b;

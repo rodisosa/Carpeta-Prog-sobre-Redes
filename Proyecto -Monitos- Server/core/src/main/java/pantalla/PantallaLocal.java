@@ -43,7 +43,7 @@ public class PantallaLocal implements Screen{
 		arrayFrutas = new Array<>();
 		crearMono();
 		crearTexto();
-		crearFruta();
+		//crearFruta();
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class PantallaLocal implements Screen{
 		if(tiempo > 1) {
 			tiempo = 0;
 			tem--;
-			crearFruta();
+			//crearFruta();
 			}
 		
 		if(tem==0) {
@@ -74,7 +74,7 @@ public class PantallaLocal implements Screen{
 		fondo.dibujar();
 		mono1.dibujar();
 		mono2.dibujar();	
-		dibujarFrutas();
+		//dibujarFrutas();
 		dibujarHud();
 		
 		Render.end();
@@ -89,7 +89,7 @@ public class PantallaLocal implements Screen{
 	}
 
 	@SuppressWarnings("static-access")
-	private void dibujarFrutas() {
+	/*private void dibujarFrutas() {
 		
 		for(int i = arrayFrutas.size - 1; i >= 0; i--) {
 			fruta = arrayFrutas.get(i);
@@ -114,7 +114,7 @@ public class PantallaLocal implements Screen{
 		for(Fruta fruta : arrayFrutas) {
 			fruta.dibujar();
 		}
-	}
+	}*/
 
 	public void crearTexto() {
 		jugador1 = new Texto(Recursos.FUENTE_MENU, 45, Color.GOLD, true);
@@ -185,12 +185,12 @@ public class PantallaLocal implements Screen{
 		puntos2.setPosicion( (Config.ANCHO - puntos2.getAncho()) - 10 , (Config.ALTO - puntos2.getAlto()) - 10);
 		
 	}
-	
+	/*
 	public void crearFruta() {
 		fruta = new Fruta(MathUtils.random(0, 2));
 		arrayFrutas.add(fruta);
 		fruta.colision = new Rectangle();
-	}
+	}*/
 	
 	public void crearMono() {
 		Sprites.load();

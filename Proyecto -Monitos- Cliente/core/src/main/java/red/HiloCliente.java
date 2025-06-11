@@ -7,8 +7,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
-import elementos.Fruta;
-import pantalla.PantallaCargaOnline;
+import pantalla.PantallaOnline;
 import utiles.Config;
 
 public class HiloCliente extends Thread{
@@ -16,9 +15,9 @@ public class HiloCliente extends Thread{
 	private InetAddress ipServer;
 	private int puerto = 8851;
 	private boolean fin = false;
-	private PantallaCargaOnline app;
+	private PantallaOnline app;
 	
-	public HiloCliente(PantallaCargaOnline app) {
+	public HiloCliente(PantallaOnline app) {
 		this.app = app;
 		try {
 			ipServer = InetAddress.getByName("255.255.255.255");
@@ -82,7 +81,6 @@ public class HiloCliente extends Thread{
 			
 			if (mensajeParametrizado[0].equals("Tiempo")) {
 				int tiempo = Integer.parseInt(mensajeParametrizado[1]);
-				System.out.println(tiempo);
 				app.tem = tiempo;
 			}
 			

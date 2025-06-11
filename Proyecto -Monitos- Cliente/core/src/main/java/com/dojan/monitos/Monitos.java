@@ -5,7 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import pantalla.PantallaCarga;
-import pantalla.PantallaCargaOnline;
+import pantalla.PantallaOnline;
 import pantalla.PantallaLocal;
 import pantalla.PantallaLocalFinal;
 import pantalla.PantallaMenu;
@@ -28,7 +28,7 @@ public class Monitos extends Game {
         //this.setScreen(new PantallaMenu()); 
         //this.setScreen(new PantallaLocal());
         //this.setScreen(new PantallaLocalFinal(0));
-        this.setScreen(new PantallaCargaOnline());
+        this.setScreen(new PantallaOnline());
     }
 
     @Override
