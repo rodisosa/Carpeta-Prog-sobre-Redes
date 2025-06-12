@@ -13,7 +13,7 @@ public class Config {
 
 
 	public static boolean ONLINE=false;
-	
+	public static boolean hiloAbierto = false;
 	
 	public static Camera camara;
 	public static SpriteBatch b;

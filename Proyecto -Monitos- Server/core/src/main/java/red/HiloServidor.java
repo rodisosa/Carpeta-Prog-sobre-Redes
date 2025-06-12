@@ -9,6 +9,7 @@ import java.net.UnknownHostException;
 
 import pantalla.PantallaMenu;
 import pantalla.PantallaOnline;
+import utiles.Config;
 
 public class HiloServidor extends Thread{
 
@@ -22,12 +23,10 @@ public class HiloServidor extends Thread{
 	
 	public HiloServidor(PantallaOnline app){
 		this.app = app;
+		fin=false;
 		creado =crearServer();   
     }
 
-	
-	
-	
 	public boolean crearServer() {
 		try {
 			conexion = new DatagramSocket(puerto);
@@ -45,30 +44,33 @@ public class HiloServidor extends Thread{
 	@Override
 	public void run() {
 		
-		while (!creado) {//comprobar si el socket existe
-            try {
-                Thread.sleep(2000);
-                puerto++;
-                creado=crearServer();
-            } catch (InterruptedException e) {}
-       }
-         do {
-             if(conexion.isClosed()) err=true;
-             else{
-                 byte[] data = new byte[1024];
-                 DatagramPacket dp = new DatagramPacket(data, data.length);
-                 try {  
-                	 //System.out.println("esperando mensaje");
-                	 conexion.receive(dp); 
-                 }catch(Exception e) {
-                     if (conexion.isClosed()) {
-                        System.out.println("el socket esta cerrado");
-                        err=true;
-                     }       
-                 }
-                 procesarMensaje(dp);
-             }
-         } while (!err);
+		
+		do {
+			while (!creado) {//comprobar si el socket existe
+				try {
+					Thread.sleep(2000);
+					puerto++;
+					creado=crearServer();
+				} catch (InterruptedException e) {}
+			}
+			do {
+				if(conexion.isClosed()) err=true;
+				else{
+					byte[] data = new byte[1024];
+					DatagramPacket dp = new DatagramPacket(data, data.length);
+					try {  
+						//System.out.println("esperando mensaje");
+						conexion.receive(dp); 
+					}catch(Exception e) {
+						if (conexion.isClosed()) {
+							System.out.println("el socket esta cerrado");
+							err=true;
+						}       
+					}
+					procesarMensaje(dp);
+				}
+			} while (!err);
+		}while(!fin);
     }
 
 	public void enviarMensaje(String msg, InetAddress ip, int puerto) {
@@ -104,8 +106,6 @@ public class HiloServidor extends Thread{
 			
 		}
 	}
-	
-	
 	
 	public void procesarMensaje(DatagramPacket dp) {
 		String msg = new String(dp.getData()).trim();
@@ -151,23 +151,29 @@ public class HiloServidor extends Thread{
 					if(nroCliente == 0) app.izq1 = false;
 					else app.izq2 = false;
 				}
+				if (msg.equals("Volver-a-Jugar")) {
+					if(nroCliente == 0) app.volJugar1 = true;
+					else app.volJugar2 = true;
+					System.out.println("llego volver a jugar");
+				}
+				if (msg.equals("Desconexion")) {
+					enviarMensajeATodos("Desconexion");
+					cantClientes = 0;
+					app.partidaTerminada = false;
+					Config.hiloAbierto = false;
+					System.out.println("Desconectar");
+					cerrarHilo();
+				}
+				
 			} 
 		}
 	}
 	
-	
+	public void cerrarHilo() {
+		fin=true;
+	}
 	
 	public int getCantClientes() {
 		return cantClientes;
 	}
-
-
-
-
-	
-	
-	
-	
-	
-	
 }

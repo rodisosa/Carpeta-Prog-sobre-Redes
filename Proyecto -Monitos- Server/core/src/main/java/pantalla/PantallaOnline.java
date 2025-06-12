@@ -33,7 +33,7 @@ public class PantallaOnline implements Screen{
 	Imagen fondo;
 	
 	public float tiempo, tiempoAnimacion, tiempo2;
-	int tem=120;
+	int tem=10, ganador = 0;
 	
 	
 	public Mono mono1, mono2;
@@ -42,7 +42,7 @@ public class PantallaOnline implements Screen{
 	public static Array<Fruta> arrayFrutas;
 	private Fruta fruta;
 	
-	boolean ganador = false ;
+	public boolean volJugar1 = false, volJugar2 = false, partidaTerminada = false;
 	public boolean der1 = false, 
 				   der2 = false, 
 				   izq1 = false, 
@@ -55,52 +55,92 @@ public class PantallaOnline implements Screen{
 		arrayFrutas = new Array<>();
 		crearMono();
 		crearTexto();
-		//crearFruta();
-		
-		hs = new HiloServidor(this);
-		hs.start();
+		if(!Config.hiloAbierto) {
+			System.out.println("Hilo Abierto");
+			hs = new HiloServidor(this);
+			hs.start();
+			Config.hiloAbierto = true;
+		}
 	}
 
 	@Override
 	public void render(float delta) {
 		
-	if(hs.getCantClientes() < 2) {
-			
+		if(hs.getCantClientes() < 2) {
 			Render.begin();
 			fondo.dibujar();
 			textoEsp.dibujar();
 			Render.end();	
 		} else {
-			tiempo += delta;
-			tiempoAnimacion += delta;
-			mono1.setTiempo(tiempoAnimacion);
-			mono2.setTiempo(tiempoAnimacion);
+			if(!partidaTerminada) {
+				tiempo += delta;
+				tiempoAnimacion += delta;
+				mono1.setTiempo(tiempoAnimacion);
+				mono2.setTiempo(tiempoAnimacion);
 			
-			Render.LimpPant();
-			update();
+				Render.LimpPant();
+				update();
 			
-			if(tiempo > 1) {
-				tiempo = 0;
-				tem--;
-				crearFruta();
-				hs.enviarMensajeATodos("Tiempo-" + tem);
-				hs.enviarMensajeCliente2("Actualizar-Mono2-" + mono2.getPosX() + "-" + mono2.camIzq + "-" + mono2.camDer);
-				hs.enviarMensajeCliente1("Actualizar-Mono1-" + mono1.getPosX() + "-" + mono1.camIzq + "-" + mono1.camDer);
+				if(tiempo > 1) {
+					tiempo = 0;
+					tem--;
+					crearFruta();
+					hs.enviarMensajeATodos("Tiempo-" + tem);
+					hs.enviarMensajeCliente2("Actualizar-Mono2-" + mono2.getPosX() + "-" + mono2.camIzq + "-" + mono2.camDer);
+					hs.enviarMensajeCliente1("Actualizar-Mono1-" + mono1.getPosX() + "-" + mono1.camIzq + "-" + mono1.camDer);
+				}
+			
+				if(tem==0) {
+					if(mono1.puntos > mono2.puntos) hs.enviarMensajeATodos("Ganador-1");
+					else if(mono1.puntos < mono2.puntos) hs.enviarMensajeATodos("Ganador-2");
+					else hs.enviarMensajeATodos("Ganandor-0");
+					partidaTerminada = true;
+					System.out.println("se termino el tiempo");
+				}
+			
+				Render.begin();
+			
+				fondo.dibujar();
+				mono1.dibujar();
+				mono2.dibujar();	
+				dibujarFrutas();
+				dibujarHud();
+			
+				Render.end();
+			
+				hs.enviarMensajeCliente1("Actualizar-Mono2-" + mono2.getPosX() + "-" + mono2.camIzq + "-" + mono2.camDer);
+				hs.enviarMensajeCliente2("Actualizar-Mono1-" + mono1.getPosX() + "-" + mono1.camIzq + "-" + mono1.camDer);
+			} else {
+				reiniciarValores();
+				if(volJugar1 && volJugar2) {
+					volJugar1=false;
+					volJugar2=false;
+					System.out.println("Enviar mensaje volver a jugar");
+					hs.enviarMensajeATodos("VolverAJugar");
+					hs.enviarMensajeCliente1("Actualizar-Mono2-" + mono2.getPosX() + "-" + mono2.camIzq + "-" + mono2.camDer);
+					hs.enviarMensajeCliente2("Actualizar-Mono1-" + mono1.getPosX() + "-" + mono1.camIzq + "-" + mono1.camDer);
+					partidaTerminada=false;
+				}
 			}
 			
-			Render.begin();
 			
-			fondo.dibujar();
-			mono1.dibujar();
-			mono2.dibujar();	
-			dibujarFrutas();
-			dibujarHud();
 			
-			Render.end();
 			
-			//hs.enviarMensajeATodos("Actualizar-Mono-" + mono1.getPosX() + "-" + mono2.getPosX());
-			hs.enviarMensajeCliente1("Actualizar-Mono2-" + mono2.getPosX() + "-" + mono2.camIzq + "-" + mono2.camDer);
-			hs.enviarMensajeCliente2("Actualizar-Mono1-" + mono1.getPosX() + "-" + mono1.camIzq + "-" + mono1.camDer);
+		}
+	}
+	
+	public void reiniciarValores() {
+		tem = 10;
+		mono1.puntos = 0;
+		mono2.puntos = 0;
+		mono1.setPosX(0);
+		mono2.setPosX(Config.ANCHO - Mono.getAncho());
+		mono1.camDer = false;
+		mono1.camIzq = false;
+		mono2.camDer = false;
+		mono2.camIzq = false;
+		for(int i = arrayFrutas.size - 1; i >= 0; i--) {
+			arrayFrutas.removeIndex(i);
 		}
 	}
 	
