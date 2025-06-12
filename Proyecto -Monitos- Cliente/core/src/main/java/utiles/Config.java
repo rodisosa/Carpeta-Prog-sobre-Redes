@@ -11,9 +11,9 @@ public class Config {
 	public static final int ANCHO = 900;		// Ancho de la pantalla  
 	public static final int ALTO = 500;		// Alto de la pantalla
 
-
 	public static boolean online = false;
 	public static boolean conectado = false;
+	public static boolean jugador;
 	
 	public static Camera camara;
 	public static SpriteBatch b;
@@ -22,15 +22,12 @@ public class Config {
 	private static int proporcion;
 	
 	public static  void iniciarCamara(){
-		
 			camara = new OrthographicCamera(ANCHO,ALTO);
 	        camara.normalizeUp();
 	        v = new FitViewport(ANCHO, ALTO, camara); 
 	        v.update(ANCHO, ALTO,true);
 	        Render.sb.setProjectionMatrix(camara.combined);
 	}
-	 
-	
 	
 	public static void updateCamara(){
 		camara.update();
@@ -42,12 +39,10 @@ public class Config {
 	}
 	
 	public static float centrado(float f){
-
 	    return (f/2-(Config.tamanioDeAlgo(proporcion,f))/2);
 	}
 	
 	public static float SacarPorcentaje(float nmb, int xyvalue){
         return (nmb*xyvalue/100);
     }
-	
 }

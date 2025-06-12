@@ -11,15 +11,12 @@ public class PantallaCarga implements Screen{
 
 	Imagen fondo;
 	boolean fadeInTerminado = false, termina = false;
-	float a = 0;
-	float countTime = 0, waitTime = 5;
-	float countTimerEnd = 0, timeEnde = 5;
-	
-
+	float aux = 0;
+	float tiempo = 0, tiempoEsp = 5;
+	float contTiempoFinal = 0, tiempoFinal = 5;
 	
 	@Override
-	public void show() {	
-
+	public void show() {
 		fondo = new Imagen (Recursos.FONDO_CARGA);
 		fondo.setSize(Config.ANCHO, Config.ALTO);
 		fondo.setTransparencia(1f);
@@ -27,36 +24,54 @@ public class PantallaCarga implements Screen{
 
 	@Override
 	public void render(float delta) {
-		
 		Render.LimpPant();
 		procesarFade();
 		Render.begin();
 			fondo.dibujar();
 		Render.end();
 	}
+	
+	private void procesarFade() {
+		fondo.setTransparencia(aux);
+		if (!fadeInTerminado) {
+			aux += 0.01f;
+			if (aux>1) {
+				aux = 1;
+				fadeInTerminado = true;
+			}
+		} else {
+			tiempo+=0.1f;
+			if (tiempo>tiempoEsp) {
+				aux -= 0.01f;
+				if (aux<0) {
+					aux = 0;
+					termina = true;
+				}
+			}
+		}
+		fondo.setTransparencia(aux);
+		if (termina){
+			contTiempoFinal+=0.1f;
+			if (contTiempoFinal>tiempoFinal){
+				Render.app.setScreen((Screen) new PantallaMenu());
+			}
+		}
+	}
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void resume() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -64,38 +79,4 @@ public class PantallaCarga implements Screen{
 		dispose();
 		Render.dispose();
 	}
-	
-	
-	
-	private void procesarFade() {
-		fondo.setTransparencia(a);
-		if (!fadeInTerminado) {
-			a += 0.01f;
-		if (a > 1) {
-			a = 1;
-			fadeInTerminado = true;
-		}
-		}else {
-			countTime+=0.1f;
-			if(countTime > waitTime) {
-				a -= 0.01f;
-				if (a < 0) {
-					a = 0;
-					termina = true;
-				
-				}
-			}
-		}
-		fondo.setTransparencia(a);
-		if(termina){
-			countTimerEnd+=0.1f;
-			if(countTimerEnd>timeEnde){
-				Render.app.setScreen((Screen) new PantallaMenu());
-				
-			}
-		}
-	}
-	
-	
-
 }

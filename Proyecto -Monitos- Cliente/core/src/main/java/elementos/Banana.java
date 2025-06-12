@@ -14,13 +14,13 @@ public class Banana extends Fruta{
 		alto = Banana.getAlto();
 	}
 	
-	public void mostrarFruta() {
+	/*public void mostrarFruta() {
 		System.out.println(nroF);
 		System.out.println(posX);
 		System.out.println(getAlto());
 		System.out.println(getAncho());
 		System.out.println(vel);
-	}
+	}*/
 	
 	public static int getAlto() {
 		return ALTO;

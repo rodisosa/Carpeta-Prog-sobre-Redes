@@ -23,7 +23,7 @@ public class Mono extends Sprites{
 	
 	public Mono(int nro) {
 		nroJ = nro;
-		if(nroJ==1) posX=0;
+		if (nroJ==1) posX=0;
 		else posX=(Config.ANCHO - ANCHO);
 		
 	}
@@ -33,7 +33,7 @@ public class Mono extends Sprites{
 		if(nroJ == 1) {
 			
 			limitarMono();
-			if(camIzq) {
+			if (camIzq) {
 				Render.s = Sprites.monoMarronCamIzq.getKeyFrame(tiempo, true);
 				Render.s.setPosition(posX, 0);
 				Render.s.draw(Render.sb);
@@ -47,7 +47,7 @@ public class Mono extends Sprites{
 			} 
 		} else {
 			limitarMono();
-			if(camIzq) {
+			if (camIzq) {
 				Render.s = Sprites.monoGrisCamIzq.getKeyFrame(tiempo, true);
 				Render.s.setPosition(posX, 0);
 				Render.s.draw(Render.sb);
