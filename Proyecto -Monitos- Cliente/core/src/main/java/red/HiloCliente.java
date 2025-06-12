@@ -25,12 +25,19 @@ public class HiloCliente extends Thread{
 		} catch (SocketException | UnknownHostException e) {
 			e.printStackTrace();
 		}
-		enviarMensaje("Conexion");
+		if (Config.mensaje) {
+			enviarMensaje("Conexion");
+			Config.mensaje = false;
+		} else if (!Config.mensaje && !Config.online && app.aux4) {
+			enviarMensaje("Desconexion");
+			
+		}
+			
 		//System.out.println("Mensaje Enviado");
 	}
 
 	public void enviarMensaje(String msg) {
-		//System.out.println("Mensaje Enviado: " + msg);
+		System.out.println("Mensaje Enviado: " + msg);
 		byte[] data = msg.getBytes();
 		DatagramPacket dp = new DatagramPacket(data, data.length, ipServer, puerto);
 		try {
@@ -56,7 +63,7 @@ public class HiloCliente extends Thread{
 
 	public void procesarMensaje(DatagramPacket dp) {
 		String msg = new String(dp.getData()).trim();
-		String mensajeParametrizado[] = msg.split("-");
+		String mensajeParametrizado[] = msg.split("<");
 		//System.out.println(msg);
 		if (mensajeParametrizado.length<3) {
 			if (msg.equals("OK")) {
@@ -70,6 +77,8 @@ public class HiloCliente extends Thread{
 			}
 			
 			if (msg.equals("Desconexion")) {
+				Config.mensaje = false;
+				enviarMensaje("Desconexion");
 				app.reiniciarValores();
 				app.cerrar = true;
 				Config.online = false;
@@ -109,7 +118,6 @@ public class HiloCliente extends Thread{
 				//System.out.println(Config.jugador);
 			}
 		} else {
-			
 			if (mensajeParametrizado[0].equals("Actualizar")) {
 				if (mensajeParametrizado[1].equals("Mono1")) {
 					float posX1 = Float.parseFloat(mensajeParametrizado[2]);

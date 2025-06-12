@@ -24,11 +24,11 @@ public class Monitos extends Game {
         Render.sb = new SpriteBatch();
         
         Config.iniciarCamara();
-        this.setScreen(new PantallaCarga()); 
+        //this.setScreen(new PantallaCarga()); 
         //this.setScreen(new PantallaMenu()); 
         //this.setScreen(new PantallaLocal());
         //this.setScreen(new PantallaLocalFinal(0));
-        //this.setScreen(new PantallaOnline());
+        this.setScreen(new PantallaOnline());
     }
 
     @Override

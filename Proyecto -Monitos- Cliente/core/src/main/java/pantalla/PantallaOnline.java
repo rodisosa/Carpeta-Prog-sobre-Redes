@@ -42,7 +42,8 @@ public class PantallaOnline implements Screen{
 	boolean mantener = false;
 	public int tem=120, ganador=0;
 	public float tiempo, tiempo1, tiempo2;
-	public boolean aux1=false, aux2=false, aux3=false, partidaTerminada = false, cerrar = false;
+	public boolean aux1=false, aux2=false, aux3=false, aux4=false, 
+			       partidaTerminada = false, cerrar = false;
 	public Mono mono1, mono2;
 	public Array<Fruta> arrayFrutas;
 	public Fruta fruta;
@@ -81,18 +82,21 @@ public class PantallaOnline implements Screen{
 		if (!Config.online) {
 			Render.begin();
 			dibujarTexto();
-			updateBusqueda();
 			Render.end();
 			if (!Config.conectado) {
-				if (con%2==0 && con!=60) hc.enviarMensaje("Conexion");
-				else if (con==60) {
-					int puerto = hc.getPuerto();
-					puerto++;
-					hc.setPuerto(puerto);
-					hc.enviarMensaje("Conexion");
-					con=0;
+				if (!aux4) {
+					if (con%3==0 && con!=60 && con!=0) {
+						hc.enviarMensaje("Conexion");
+					} else if (con==60) {
+						int puerto = hc.getPuerto();
+						puerto++;
+						hc.setPuerto(puerto);
+						hc.enviarMensaje("Conexion");
+						con=0;
+					}
 				}
 			}
+			updateBusqueda();
 		} else {  
 			if (!partidaTerminada) {
 				tiempo += delta;
@@ -100,10 +104,6 @@ public class PantallaOnline implements Screen{
 				mono1.setTiempo(tiempo1);
 				mono2.setTiempo(tiempo1);
 				update();
-				//if (tiempo>1) {
-				//	tiempo = 0;
-				//	tem--;
-				//}
 				Render.begin();
 				mono1.dibujar();
 				mono2.dibujar();	
@@ -127,6 +127,7 @@ public class PantallaOnline implements Screen{
 	private void updateBusqueda() {
 		if (entradas.isEsc()) {
 			if (aux3==false) {
+				aux4 = true;
 				aux3 = true;
 				if (Config.conectado) {
 					hc.enviarMensaje("Desconexion");
@@ -135,6 +136,8 @@ public class PantallaOnline implements Screen{
 				Render.app.setScreen(new PantallaMenu());	
 			}
 			inputwait();
+		} else {
+			aux3 = false;
 		}
 		
 	}
@@ -193,9 +196,13 @@ public class PantallaOnline implements Screen{
 			esperaEntrada();
 			tiempo2 = 0;
 			switch (opc){
-				case 1: hc.enviarMensaje("Volver-a-Jugar");
+				case 1: 
+					hc.enviarMensaje("Volver<a<Jugar");
+					reiniciarValores();
 					break;
 				case 2: 
+					//Config.mensaje = false;
+					reiniciarValores();
 					hc.enviarMensaje("Desconexion");
 					hc.cerrarHilo();
 					Render.app.setScreen(new PantallaMenu());

@@ -29,9 +29,9 @@ PantallaMenu app;
 PantallaLocal app1;
 PantallaLocalFinal app2;
 
-public Teclado (PantallaMenu app) {
-this.app = app;
-}
+	public Teclado (PantallaMenu app) {
+		this.app = app;
+	}
 
 public Teclado (PantallaLocal app) {
 this.app1 = app;

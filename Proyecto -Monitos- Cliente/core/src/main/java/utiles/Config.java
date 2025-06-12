@@ -14,6 +14,7 @@ public class Config {
 	public static boolean online = false;
 	public static boolean conectado = false;
 	public static boolean jugador;
+	public static boolean mensaje = true;
 	
 	public static Camera camara;
 	public static SpriteBatch b;

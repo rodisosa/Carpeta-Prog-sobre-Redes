@@ -85,6 +85,7 @@ public class PantallaMenu implements Screen{
 					break;	
 				case 2:
 					tiempo = 0;
+					Config.mensaje = true;
 					Render.app.setScreen(new PantallaOnline());
 					break;
 				case 3:

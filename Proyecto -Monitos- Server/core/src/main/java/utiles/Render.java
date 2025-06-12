@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.dojan.monitosserver.MonitosServer;
 
 public class Render {
-
 	public static SpriteBatch sb;
 	public static Sprite s;
 	public static MonitosServer app;
@@ -15,7 +14,6 @@ public class Render {
 	public static void LimpPant() {
 		Gdx.gl.glClearColor (1,1,1,1);
 		Gdx.gl.glClear (GL20.GL_COLOR_BUFFER_BIT);
-
 	}
 	
 	public static void begin() {

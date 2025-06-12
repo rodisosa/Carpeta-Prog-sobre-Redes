@@ -6,7 +6,6 @@ import utiles.Config;
 import utiles.Render;
 
 public class Mono extends Sprites{
-	
 	private static final int ALTO = 112;
 	private static final int ANCHO = 88;
 	public static final float DURACION_DE_FRAMES = 0.1f;
@@ -23,17 +22,15 @@ public class Mono extends Sprites{
 	
 	public Mono(int nro) {
 		nroJ = nro;
-		if(nroJ==1) posX=0;
+		if (nroJ==1) posX=0;
 		else posX=(Config.ANCHO - ANCHO);
 		
 	}
 		
 	public void dibujar() {	
-		
-		if(nroJ == 1) {
-			
+		if (nroJ==1) {	
 			limitarMono();
-			if(camIzq) {
+			if (camIzq) {
 				Render.s = Sprites.monoMarronCamIzq.getKeyFrame(tiempo, true);
 				Render.s.setPosition(posX, 0);
 				Render.s.draw(Render.sb);
@@ -47,7 +44,7 @@ public class Mono extends Sprites{
 			} 
 		} else {
 			limitarMono();
-			if(camIzq) {
+			if (camIzq) {
 				Render.s = Sprites.monoGrisCamIzq.getKeyFrame(tiempo, true);
 				Render.s.setPosition(posX, 0);
 				Render.s.draw(Render.sb);
@@ -63,8 +60,8 @@ public class Mono extends Sprites{
 	}
 	
 	public void limitarMono() {	
-		if (posX < 0) posX=0;
-		if (posX > (Config.ANCHO - ANCHO)) posX = (Config.ANCHO - ANCHO);
+		if (posX<0) posX=0;
+		if (posX>(Config.ANCHO - ANCHO)) posX = (Config.ANCHO - ANCHO);
 	}
 	
 	public static float getAlto() {

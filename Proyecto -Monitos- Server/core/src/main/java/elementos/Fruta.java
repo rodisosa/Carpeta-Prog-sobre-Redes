@@ -6,11 +6,8 @@ import utiles.Config;
 import utiles.Render;
 
 public class Fruta extends Sprites{
-
-	
 	private static final int ALTO = 50;
 	private static final int ANCHO = 50;
-	
 	protected float posX, posY = Config.ALTO + ALTO;
 	protected int nroF, vel;
 	public Rectangle colision;
@@ -23,10 +20,10 @@ public class Fruta extends Sprites{
 		
 	public void dibujar(int nroF) {	
 		this.nroF = nroF;
-		if(nroF == Manzana.getNroM()) {
+		if (nroF==Manzana.getNroM()) {
 			manzana.setPosition(posX,posY);
 			manzana.draw(Render.sb);	
-		} else if(nroF == Pera.getNroP()) {
+		} else if (nroF==Pera.getNroP()) {
 			pera.setPosition(posX,posY);
 			pera.draw(Render.sb);	
 		} else {
@@ -59,10 +56,10 @@ public class Fruta extends Sprites{
 		return ANCHO;
 	}
 	
-	public void mostrarFruta() {
+	/*public void mostrarFruta() {
 		System.out.println(nroF);
 		System.out.println(posX);
-	}
+	}*/
 	
 	public int getNroF() {
 		return nroF;

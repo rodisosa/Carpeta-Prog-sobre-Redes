@@ -5,12 +5,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 public class Imagen {
-
 	private Texture t;
 	private Sprite s;
 	private float x = 0,y = 0;
-	
-	
 	
 	public Imagen (String ruta) {
 		t = new Texture(ruta);
@@ -57,5 +54,4 @@ public class Imagen {
 		s.setX(x);
 		s.setY(y);
 	}
-	
 }

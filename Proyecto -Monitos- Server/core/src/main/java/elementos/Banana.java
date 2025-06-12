@@ -1,7 +1,6 @@
 package elementos;
 
 public class Banana extends Fruta{
-
 	private static final int ALTO = 50;
 	private static final int ANCHO = 50;
 	private static final int PUNTOS = 100;
@@ -14,13 +13,13 @@ public class Banana extends Fruta{
 		alto = Banana.getAlto();
 	}
 	
-	public void mostrarFruta() {
+	/*public void mostrarFruta() {
 		System.out.println(nroF);
 		System.out.println(posX);
 		System.out.println(getAlto());
 		System.out.println(getAncho());
 		System.out.println(vel);
-	}
+	}*/
 	
 	public static int getAlto() {
 		return ALTO;

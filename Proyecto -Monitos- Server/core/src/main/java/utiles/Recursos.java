@@ -11,6 +11,4 @@ public class Recursos {
 	
 	public final static String ATLAS = "sprites/SpritesJuego.atlas";
 	public final static String IMAGENES = "sprites/SpritesJuego.png";
-	//public final static String BANANA = "sprites/Banana.png";
-	
 }
