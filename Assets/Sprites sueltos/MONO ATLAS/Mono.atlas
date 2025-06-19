@@ -1,0 +1,48 @@
+
+Mono.png
+size: 272, 230
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+Cam1
+  rotate: false
+  xy: 182, 116
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+Cam2
+  rotate: false
+  xy: 92, 116
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+Cam3
+  rotate: false
+  xy: 2, 116
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+Cam4
+  rotate: false
+  xy: 92, 2
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+Cam5
+  rotate: false
+  xy: 2, 2
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+Estatico
+  rotate: false
+  xy: 182, 2
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1

@@ -27,8 +27,8 @@ public class Monitos extends Game {
         //this.setScreen(new PantallaCarga()); 
         //this.setScreen(new PantallaMenu()); 
         //this.setScreen(new PantallaLocal());
-        //this.setScreen(new PantallaLocalFinal(0));
-        this.setScreen(new PantallaOnline());
+        //this.setScreen(new PantallaLocalFinal(2));
+        //this.setScreen(new PantallaOnline());
     }
 
     @Override

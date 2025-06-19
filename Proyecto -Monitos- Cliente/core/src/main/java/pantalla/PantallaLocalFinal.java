@@ -29,7 +29,7 @@ public class PantallaLocalFinal extends PantallaLocal {
 
 	@Override
 	public void show() {
-		//Sprites.load(); //------------------------------------------------
+		Sprites.load(); //------------------------------------------------
 		entradas.startInput();
 		Gdx.input.setInputProcessor(entradas);
 		fondo = new Imagen (Recursos.FONDO_FINAL);

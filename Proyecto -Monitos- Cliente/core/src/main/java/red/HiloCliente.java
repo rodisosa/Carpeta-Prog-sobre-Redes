@@ -64,7 +64,7 @@ public class HiloCliente extends Thread{
 	public void procesarMensaje(DatagramPacket dp) {
 		String msg = new String(dp.getData()).trim();
 		String mensajeParametrizado[] = msg.split("<");
-		//System.out.println(msg);
+		System.out.println("Mensaje reibido: " + msg);
 		if (mensajeParametrizado.length<3) {
 			if (msg.equals("OK")) {
 				ipServer = dp.getAddress();

@@ -1,0 +1,111 @@
+
+SpritesAtlas.png
+size: 396, 396
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+MonoGrisCam1
+  rotate: false
+  xy: 272, 54
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisCam2
+  rotate: false
+  xy: 182, 282
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisCam3
+  rotate: false
+  xy: 2, 168
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisCam4
+  rotate: false
+  xy: 272, 282
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisCam5
+  rotate: false
+  xy: 2, 54
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoGrisEst
+  rotate: false
+  xy: 92, 54
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCam1
+  rotate: false
+  xy: 92, 282
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCam2
+  rotate: false
+  xy: 182, 54
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCam3
+  rotate: false
+  xy: 92, 168
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCam4
+  rotate: false
+  xy: 2, 282
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronCam5
+  rotate: false
+  xy: 182, 168
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+MonoMarronEst
+  rotate: false
+  xy: 272, 168
+  size: 88, 112
+  orig: 88, 112
+  offset: 0, 0
+  index: -1
+banana
+  rotate: false
+  xy: 54, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+manzana
+  rotate: false
+  xy: 106, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+pera
+  rotate: false
+  xy: 2, 2
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
